@@ -1,6 +1,51 @@
 /* You can add global styles to this file, and also import other style files */
+
 @tailwind base;
 @tailwind components;
+
+
+.btn{
+  @apply p-2 mt-5  rounded-md;
+}
+
+
+.btn-naranjete{
+  @apply bg-naranjete text-oscurito;
+}
+
+.btn-auth{
+  @apply border-t-2 border-r-2 border-l-2 rounded-none border-oscuro bg-oscuro;
+}
+
+.btn:hover:enabled{
+  @apply bg-opacity-75;
+}
+
+.btn:hover:disabled{
+  @apply cursor-default;
+}
+
+
+/**
+form
+ */
+
+.form-group{
+  @apply mt-3 mb-3;
+}
+
+.form-input{
+  @apply bg-oscurito p-2 text-naranjete  rounded-lg w-full border border-oscuro;
+}
+
+
+.alert{
+  @apply bg-alert p-2 rounded-lg;
+}
+
+
+
+
 @tailwind utilities;
 
 body {

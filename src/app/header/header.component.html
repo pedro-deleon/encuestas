@@ -1,0 +1,14 @@
+<div class="flex justify-between bg-oscurito border-b-2 border-oscuro">
+  <div class="flex">
+    <img class="mr-10" src="assets/cdis.png" alt="Logo CDIS UANL" srcset="" width="170">
+    <h1 class="ml-3 mt-10 font-bold text-xl">Encuestas de Capacitación</h1>
+  </div>
+
+
+  <div class="flex items-end">
+    <button class="btn btn-auth" *ngIf="isLoggedIn$ | async" routerLink="cuenta">Sesión: {{currentUser.email}}</button>
+    <button class="btn btn-auth" *ngIf="isLoggedIn$ | async" (click)="logout()">Cerrar Sesión</button>
+  </div>
+
+</div>
+

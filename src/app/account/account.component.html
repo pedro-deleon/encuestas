@@ -1,0 +1,48 @@
+<div class="mx-auto  flex  flex-col  m-2 p-8  w-2/4
+  sm:min-w-full md:min-w-full xl:min-w-0 lg:min-w-0 min-w-full">
+
+  <h2 class="text-center text-lg font-extrabold">Cuenta</h2>
+
+  <form autocomplete="off" novalidate [formGroup]="form">
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input class="form-input" type="text" id="email" formControlName="email"
+
+      >
+    </div>
+
+    <div class="form-group">
+      <label for="nombre">Nombre</label>
+      <input class="form-input" type="text" id="nombre" formControlName="nombre"
+
+      >
+    </div>
+
+    <div class="form-group">
+      <label for="apellidoPaterno">Apellido Paterno</label>
+      <input class="form-input" type="text" id="apellidoPaterno" formControlName="apellidoPaterno"
+      >
+    </div>
+
+    <div class="form-group">
+      <label for="apellidoMaterno">Apellido Materno</label>
+      <input class="form-input" type="text" id="apellidoMaterno" formControlName="apellidoMaterno"
+      >
+    </div>
+
+    <button class="btn btn-naranjete" (click)="guardar()">Guardar</button>
+  </form>
+
+
+  <h2 class="text-center text-lg font-extrabold mt-10 mb-5">Certificados</h2>
+
+
+  <ng-container *ngFor="let encuestaContestada of encuestasContestadas$ | async">
+    <div (click)="onVerCertificado(encuestaContestada.cursoAbr)"
+      class="p-5  bg-oscuro  flex justify-between rounded-md cursor-pointer  hover:bg-oscuro hover:bg-opacity-75 text-lg">
+      {{encuestaContestada.nombre}}
+    </div>
+  </ng-container>
+
+</div>

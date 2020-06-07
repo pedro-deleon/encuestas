@@ -1,10 +1,37 @@
-<div class="m-10 p-5  bg-oscurito flex justify-between rounded-md cursor-pointer hover:bg-oscuro"
-  routerLink="angular-pa">
-  <div class="">
-    <div class="lg:text-5xl sm:text-3xl">Angular Plataforma de Arranque</div>
-    <div>Instructor: <span class="text-naranjete">Pedro de León</span> </div>
-  </div>
-  <div>
-    <img src="assets/angular.png" alt="Logo Angular" width="130">
-  </div>
-</div>
+<ng-container *ngIf="activatedRoute.children.length == 0 && isLoggedIn$ | async">
+  <ng-container *ngFor="let curso of cursos$ | async">
+
+
+    <ng-container *ngIf="encuestasContestadas[curso.nombre_corto] | async else refEncuestaNoContestada">
+      <div class="m-10 p-5  bg-oscuro  flex justify-between rounded-md">
+        <div>
+          <div class="lg:text-5xl sm:text-3xl">{{curso.nombre}}</div>
+          <div>Instructor: <span class="text-naranjete">{{curso.instructor}}</span></div>
+          <div>Esta encuesta ya ha sido contestada!</div>
+        </div>
+        <div>
+          <img src="assets/angular.png" alt="Logo Angular" width="130">
+        </div>
+      </div>
+    </ng-container>
+
+
+    <ng-template #refEncuestaNoContestada>
+      <div
+        class="m-10 p-5  bg-oscuro  flex justify-between rounded-md cursor-pointer  hover:bg-oscuro hover:bg-opacity-75"
+        (click)="agregarCursoSeleccionado(curso)"
+        routerLink="angular-pa">
+        <div>
+          <div class="lg:text-5xl sm:text-3xl">{{curso.nombre}}</div>
+          <div>Instructor: <span class="text-naranjete">{{curso.instructor}}</span></div>
+        </div>
+        <div>
+          <img src="assets/angular.png" alt="Logo Angular" width="130">
+        </div>
+      </div>
+    </ng-template>
+  </ng-container>
+</ng-container>
+
+
+<router-outlet></router-outlet>
