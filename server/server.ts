@@ -31,6 +31,8 @@ app.use(cookieParser());
 
 // Create link to Angular build directory
 const distDir = __dirname + "/dist/";
+
+console.log(distDir);
 app.use(express.static(distDir));
 
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
@@ -62,6 +64,9 @@ var allowCrossDomain = function (req, res, next) {
     }
 };
 
+
+// Send message for default URL
+app.get('/', (req, res) => res.send('API Encuestas'));
 
 // Launch app to listen to specified port
 app.listen(port, function () {
