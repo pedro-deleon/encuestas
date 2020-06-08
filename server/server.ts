@@ -63,9 +63,6 @@ var allowCrossDomain = function (req, res, next) {
 };
 
 
-// Send message for default URL
-app.get('/', (req, res) => res.send('API Encuestas'));
-
 // Launch app to listen to specified port
 app.listen(port, function () {
 
