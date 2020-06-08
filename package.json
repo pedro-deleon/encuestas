@@ -52,7 +52,7 @@
   },
   "devDependencies": {
     "@angular-builders/custom-webpack": "^8.3.0",
-    "@angular-devkit/build-angular": "^0.901.7",
+    "@angular-devkit/build-angular": "0.803.24",
     "@angular/language-service": "~8.2.3",
     "@types/jasmine": "~3.3.8",
     "@types/jasminewd2": "~2.0.3",
