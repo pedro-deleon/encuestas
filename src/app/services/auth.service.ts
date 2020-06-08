@@ -6,7 +6,6 @@ import {catchError, filter, map, share, shareReplay, tap} from "rxjs/operators";
 import {sessionStore} from "../../../server/user/session-store";
 import {userError} from "@angular/compiler-cli/src/transformers/util";
 import {Router, UrlTree} from "@angular/router";
-import {Url} from "url";
 
 
 export const ANONYNOUS_USER : User= {
