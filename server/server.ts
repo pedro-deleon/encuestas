@@ -17,9 +17,7 @@ const cookieParser = require('cookie-parser');
 
 let mongoose = require('mongoose');
 
-// Create link to Angular build directory
-const distDir = __dirname + "/dist/";
-app.use(express.static(distDir));
+
 
 
 app.use(bodyParser.urlencoded({
@@ -30,6 +28,10 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 app.use(cookieParser());
+
+// Create link to Angular build directory
+const distDir = __dirname + "/dist/";
+app.use(express.static(distDir));
 
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
