@@ -3,16 +3,19 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --proxy--config ./proxy.json --ssl  --ssl-key localhost.key --ssl-cert localhost.crt",
+    "start": "node /server/server.ts",
     "start-server": "./node_modules/.bin/ts-node ./server/server.ts --secure",
     "server": "./node_modules/.bin/nodemon  -w ./server --ext \".ts\" --exec \"npm run start-server\"",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "postinstall": "ng build --output-path dist"
   },
   "private": true,
   "dependencies": {
+    "@angular/cli": "^8.3.26",
+    "@angular/compiler-cli": "^8.2.14",
     "@angular-devkit/architect": "^0.901.1",
     "@angular/animations": "~8.2.3",
     "@angular/common": "~8.2.3",
@@ -48,9 +51,7 @@
   },
   "devDependencies": {
     "@angular-builders/custom-webpack": "^8.3.0",
-    "@angular-devkit/build-angular": "~0.803.0",
-    "@angular/cli": "^8.3.26",
-    "@angular/compiler-cli": "~8.2.3",
+    "@angular-devkit/build-angular": "^0.901.7",
     "@angular/language-service": "~8.2.3",
     "@types/jasmine": "~3.3.8",
     "@types/jasminewd2": "~2.0.3",
