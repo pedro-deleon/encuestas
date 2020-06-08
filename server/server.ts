@@ -30,7 +30,7 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 
 // Create link to Angular build directory
-const distDir = __dirname + "/dist/";
+const distDir = "/dist/";
 
 console.log(distDir);
 app.use(express.static(distDir));
