@@ -6,7 +6,7 @@
   },
   "scripts": {
     "ng": "ng",
-    "start": "node /server/server.ts",
+    "start": "./node_modules/.bin/ts-node ./server/server.ts --secure",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -48,7 +48,8 @@
     "rxjs": "~6.4.0",
     "tailwindcss": "^1.4.6",
     "tslib": "^1.10.0",
-    "zone.js": "~0.9.1"
+    "zone.js": "~0.9.1",
+    "ts-node": "~7.0.0"
   },
   "devDependencies": {
     "@angular-builders/custom-webpack": "^8.3.0",
