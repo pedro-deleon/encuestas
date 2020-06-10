@@ -59,6 +59,7 @@ export function generarCertificado(request: Request, response: Response) {
               if(err){
                 console.log("Error", err);
               } if(data){
+                console.log(data);
                 console.log("Upload Sucess", data.Location)
                 console.log(`Certificado de ${request.body.participante} creado con éxito`);
                 response.status(200).json({mensaje: 'Certificado creado con éxito'})
