@@ -1,5 +1,33 @@
-ng serve --proxy--config ./proxy.json --ssl  --ssl-key localhost.key --ssl-cert localhost.crt
+localhost testing
 
 
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve --proxy--config ./proxy.json --ssl  --ssl-key localhost.key --ssl-cert localhost.crt",
     "start-server": "./node_modules/.bin/ts-node ./server/server.ts --secure",
     "server": "./node_modules/.bin/nodemon  -w ./server --ext \".ts\" --exec \"npm run start-server\"",
+    "build": "ng build",
+    "test": "ng test",
+    "lint": "ng lint",
+    "e2e": "ng e2e"
+  }
+
+
+
+production heroku
+
+  "scripts": {
+    "ng": "ng",
+    "start": "./node_modules/.bin/ts-node ./server/server.ts --secure",
+    "build": "ng build",
+    "test": "ng test",
+    "lint": "ng lint",
+    "e2e": "ng e2e",
+    "postinstall": "ng build --output-path dist"
+  }
+
+
+
+
+
+"@angular-devkit/build-angular": "0.803.24"

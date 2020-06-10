@@ -2,6 +2,12 @@ import {Request, Response} from 'express';
 import {sessionStore} from "./user/session-store";
 import {agregarRespuestasPorUsuario} from "./encuestas/respuestas-mongo";
 const fs = require('fs')
+const AWS = require('aws-sdk');
+
+AWS.config.update({region: 'us-east-1'});
+
+
+
 
 const pdf = require('html-pdf');
 
@@ -14,8 +20,10 @@ const options = {
 export function generarCertificado(request: Request, response: Response) {
 
   const sessionId = request.cookies['SESSIONID'];
-
+  let s3 = new AWS.S3({apiVersion: '2006-03-01'})
   const user = sessionStore.findUserBySessionId(sessionId);
+
+
 
 
   if (!sessionStore.isSessionValid(sessionId)) {
@@ -34,18 +42,28 @@ export function generarCertificado(request: Request, response: Response) {
 
     pdf.create(html,options).toStream(function(err,stream){
 
-      let dir = `./server/certificados/${request.body.participante}`
+      let uploadParams = {Bucket: 'encuestas-cdis', Key: '', Body: ''}
 
-      if(!fs.existsSync(dir)){
-        fs.mkdirSync(dir);
-      }
+      uploadParams.Body = stream;
+      const path = require ('path')
+
+      uploadParams.Key = path.basename(`/certificados/${request.body.participante}`)
+
+
 
       agregarRespuestasPorUsuario(user, request.body.preguntasEncuesta, request.body.curso, response).then(
         (value)=> {
           if(value === 1){
-            stream.pipe(fs.createWriteStream(`${dir}/${request.body.curso.nombre_corto}.pdf`));
-            console.log(`Certificado de ${request.body.participante} creado con éxito`);
-            response.status(200).json({mensaje: 'Certificado creado con éxito'})
+
+            s3.upload(uploadParams, function(err,data){
+              if(err){
+                console.log("Error", err);
+              } if(data){
+                console.log("Upload Sucess", data.Location)
+                console.log(`Certificado de ${request.body.participante} creado con éxito`);
+                response.status(200).json({mensaje: 'Certificado creado con éxito'})
+              }
+            })
           }else if(value === 0){
             response.sendStatus(403);
           }

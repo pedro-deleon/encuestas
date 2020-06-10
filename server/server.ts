@@ -7,15 +7,23 @@ import {logout} from "./user/logout.route";
 import {login} from "./user/login.route";
 import {actualizarUsuario} from "./user/actualizar.route";
 import {obtenerCursosTerminadosPorUsuario} from "./cursos/cursos-terminados.route";
+import {obtenerBuckets} from "./buckets.route";
 let express = require('express');
 
 const app: Application = express();
 
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
+const aws = require('aws-sdk');
 
 
 let mongoose = require('mongoose');
+
+
+const S3_BUCKET = "encuestas-cdis";
+
+aws.config.region = 'eu-west-1';
+
 
 
 
@@ -35,7 +43,13 @@ const distDir = "./dist/";
 console.log(distDir);
 app.use(express.static(distDir));
 
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+
+if(process.env.MONGODB_URI){
+  mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+}else{
+  mongoose.connect("mongodb://localhost:27017/encuestas", { useNewUrlParser: true, useUnifiedTopology: true });
+}
+
 
 var db = mongoose.connection;
 
@@ -63,6 +77,9 @@ var allowCrossDomain = function (req, res, next) {
         next();
     }
 };
+
+
+
 
 
 // Launch app to listen to specified port
@@ -107,3 +124,7 @@ app.route('/api/login')
 
 app.route('/api/contestocurso')
   .post(encuestaContestada)
+
+
+app.route('/api/buckets')
+  .get(obtenerBuckets);
