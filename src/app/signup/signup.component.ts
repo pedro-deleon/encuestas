@@ -52,7 +52,6 @@ export class SignupComponent implements OnInit {
   }
 
   signup(){
-    console.log(this.password);
     const val = this.form.value;
     if(val.email){
       this.authService.signup({

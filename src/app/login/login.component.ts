@@ -1,15 +1,11 @@
-import {Component, ElementRef, OnInit} from '@angular/core';
-import {faGithub} from '@fortawesome/free-brands-svg-icons'
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../services/auth.service";
 import {Router} from "@angular/router";
-import {faEye, faEyeSlash} from "@fortawesome/free-solid-svg-icons/"
-
 
 
 import{
   trigger,
-  state,
   style,
   animate,
   transition

@@ -4,7 +4,7 @@ import moment = require("moment");
 
 export class Session {
   static readonly VALIDITY_MINUTES = 60;
-  private validUntil: Moment;
+  private readonly validUntil: Moment;
   constructor(public sessionId:string, public user: User){
 
     this.validUntil = moment().add(Session.VALIDITY_MINUTES, 'minutes');

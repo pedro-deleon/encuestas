@@ -3,12 +3,7 @@ import {sessionStore} from "./user/session-store";
 import {agregarRespuestasPorUsuario} from "./encuestas/respuestas-mongo";
 const fs = require('fs')
 const AWS = require('aws-sdk');
-
-AWS.config.update({region: 'us-east-1'});
-
-
-
-
+AWS.config.update({region: 'us-east-2'});
 const pdf = require('html-pdf');
 
 const options = {
@@ -17,12 +12,11 @@ const options = {
 }
 
 
-export function generarCertificado(request: Request, response: Response) {
+export async function generarCertificado(request: Request, response: Response) {
 
   const sessionId = request.cookies['SESSIONID'];
   let s3 = new AWS.S3({apiVersion: '2006-03-01'})
-  const user = sessionStore.findUserBySessionId(sessionId);
-
+  const user = await sessionStore.findUserBySessionId(sessionId);
 
 
 
@@ -40,6 +34,8 @@ export function generarCertificado(request: Request, response: Response) {
 
 
 
+
+
     pdf.create(html,options).toStream(function(err,stream){
 
       let uploadParams = {Bucket: 'encuestas-cdis', Key: '', Body: ''}
@@ -47,10 +43,8 @@ export function generarCertificado(request: Request, response: Response) {
       uploadParams.Body = stream;
       const path = require ('path')
 
-      uploadParams.Key = path.basename(`/certificados/${request.body.participante}`)
-
-
-
+     // uploadParams.Key = path.basename(`/certificados/${request.body.participante}`)
+      uploadParams.Key = `certificados/${request.body.participante}/${request.body.curso.nombre_corto}.pdf`;
       agregarRespuestasPorUsuario(user, request.body.preguntasEncuesta, request.body.curso, response).then(
         (value)=> {
           if(value === 1){
@@ -59,7 +53,6 @@ export function generarCertificado(request: Request, response: Response) {
               if(err){
                 console.log("Error", err);
               } if(data){
-                console.log(data);
                 console.log("Upload Sucess", data.Location)
                 console.log(`Certificado de ${request.body.participante} creado con éxito`);
                 response.status(200).json({mensaje: 'Certificado creado con éxito'})
@@ -83,23 +76,30 @@ export function generarCertificado(request: Request, response: Response) {
  * @param res
  */
 export function obtenerCertificadoPorUsuarioAndCurso(req: Request, res: Response){
-  /**
-   * En base al nombre del usuario voy a obtener el certificado de ese usuario
-   * */
+  let s3 = new AWS.S3({apiVersion: '2006-03-01'});
 
   const sessionId = req.cookies['SESSIONID'];
 
   const nombre = req.body.nombre;
   const cursoAbr = req.body.cursoAbr;
-  console.log(req.body.nombre)
-  console.log('Body obtener certificado')
-  console.log(req.body);
 
 
   if (!sessionStore.isSessionValid(sessionId)) {
     res.sendStatus(403);
   }else{
-    res.sendFile(`./certificados/${nombre}/${cursoAbr}.pdf`,{root: __dirname});
+
+    let getParams = {
+      Bucket : 'encuestas-cdis',
+      Key: `certificados/${nombre}/${cursoAbr}.pdf`
+    }
+
+    s3.getObject(getParams, function(err, data){
+      if(err){
+        console.log("Error", err);
+        res.sendStatus(404);
+      }
+      res.end(data.Body)
+    })
   }
 
 
@@ -107,7 +107,7 @@ export function obtenerCertificadoPorUsuarioAndCurso(req: Request, res: Response
 
 
 function crearCertificado(fechaEmision: string, participante: string, horas: string, capacitacion: string, instructor: string, pagina: string) {
-  const html = `<!doctype html>
+  return `<!doctype html>
         <html>
            <head>
                 <meta charset="utf-8">
@@ -122,7 +122,7 @@ function crearCertificado(fechaEmision: string, participante: string, horas: str
                   position: relative;
                   margin: 0;
                   font-family: 'Ubuntu', sans-serif;
-                  letter-spacing: 2.5px;
+                  letter-spacing: 3px;
                 }
 
                 .reksai-container{
@@ -159,14 +159,14 @@ function crearCertificado(fechaEmision: string, participante: string, horas: str
 
                 .curso-info .cabecera{
                   font-size: 2.5em;
-                  margin-bottom: 0px;
+                  margin-bottom: 0;
                 }
 
                 .curso-info .bold-text{
                   font-size: 3.4em;
                   font-weight: bold;
-                  margin-bottom: 0px;
-                  margin-top : 0px;
+                  margin-bottom: 0;
+                  margin-top : 0;
                 }
 
                 .curso-info .simple-text{
@@ -189,7 +189,7 @@ function crearCertificado(fechaEmision: string, participante: string, horas: str
 
                 .cnt-instructor hr{
                   width: 20%;
-                  margin-top: 0px;
+                  margin-top: 0;
                 }
 
                 .footer p{
@@ -232,8 +232,6 @@ function crearCertificado(fechaEmision: string, participante: string, horas: str
             </body>
         </html>
     `;
-
-  return html;
 }
 
 

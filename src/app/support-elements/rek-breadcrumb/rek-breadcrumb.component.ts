@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, Event, NavigationEnd, Route, Router} from "@angular/router";
+import {ActivatedRoute, Event, NavigationEnd, Router} from "@angular/router";
 import {distinctUntilChanged, filter} from "rxjs/operators";
 
 export interface IBreadCrumb {

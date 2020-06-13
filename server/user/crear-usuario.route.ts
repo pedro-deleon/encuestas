@@ -31,11 +31,7 @@ export function crearUsuarioRoute(req: Request, res:Response){
 }
 
 async function createUserAndSession(res,user){
-  const passwordDigest = await argon2.hash(user.password)
-
-
-
-  user.password = passwordDigest;
+  user.password = await argon2.hash(user.password)
 
   let usuarioModel = new Usuario(user);
 
@@ -52,7 +48,7 @@ async function createUserAndSession(res,user){
 
   res.cookie("SESSIONID", sessionId, {httpOnly: true, secure: true});
 
-  res.status(200).json({
+  await res.status(200).json({
     email: user.email,
     nombre: user.nombre,
     apellidoPaterno: user.apellidoMaterno,

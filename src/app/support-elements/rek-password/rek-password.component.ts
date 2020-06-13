@@ -1,4 +1,4 @@
-import { Component, OnInit, forwardRef, HostBinding, Input } from '@angular/core';
+import { Component, OnInit, forwardRef} from '@angular/core';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
 import {faEye, faEyeSlash} from "@fortawesome/free-solid-svg-icons";
 
@@ -31,7 +31,6 @@ export class RekPasswordComponent implements OnInit, ControlValueAccessor {
   }
 
   onInput(value: string){
-    console.log('Entre en input')
     this.value = value;
     this.onTouch();
     this.onChange(this.value);

@@ -1,6 +1,7 @@
 <div class="text-4xl m-5">
   <h2>Haz completado con éxito la capacitación: </h2>
 </div>
+<rek-spinner *ngIf="displaySpinner"></rek-spinner>
 <pdf-viewer [src]="arrayBuffer"
             [render-text]="true"
 >

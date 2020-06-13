@@ -1,16 +1,25 @@
 import {Session} from "./session";
 import {User} from "../../src/app/model/User";
+import {Usuario} from "./usuario-model";
 
-class SessionStore{
-  private sessions: {[key:string]: Session} = {};
+class SessionStore {
+  private sessions: { [key: string]: Session } = {};
 
-  createSession(sessionId:string, user: User){
-    this.sessions[sessionId]  = new Session(sessionId, user);
+  createSession(sessionId: string, user: User) {
+    this.sessions[sessionId] = new Session(sessionId, user);
   }
 
-  findUserBySessionId(sessionId: string){
+  async findUserBySessionId(sessionId: string) {
     const session = this.sessions[sessionId];
-    return this.isSessionValid(sessionId) ? session.user : undefined;
+    if (this.isSessionValid(sessionId)) {
+      const userMongo = await Usuario.findOne({email: session.user.email})
+      session.user.nombre = userMongo.nombre;
+      session.user.apellidoPaterno = userMongo.apellidoPaterno;
+      session.user.apellidoMaterno = userMongo.apellidoMaterno;
+      return session.user;
+    } else {
+      return undefined;
+    }
   }
 
   isSessionValid(sessionId: string): boolean {

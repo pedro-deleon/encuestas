@@ -14,35 +14,49 @@ import {Router} from "@angular/router";
 export class AccountComponent implements OnInit {
   form: FormGroup;
   encuestasContestadas$: Observable<EncuestaContestada[]>;
+  displaySpinner: boolean  = false;
+  email: string;
 
   constructor(private authService: AuthService, private cursoService: CursosService, private router: Router) {
   }
 
   ngOnInit() {
-    this.authService.user$.subscribe(user => {
-      this.form = new FormGroup({
-        email: new FormControl(user.email),
-        nombre: new FormControl(user.nombre),
-        apellidoPaterno: new FormControl(user.apellidoPaterno),
-        apellidoMaterno: new FormControl(user.apellidoMaterno)
-      })
+    this.form = new FormGroup({
+      nombre: new FormControl(''),
+      apellidoPaterno: new FormControl(''),
+      apellidoMaterno: new FormControl('')
     })
+
+
+    this.authService.user$.subscribe(user => {
+      this.email = user.email;
+      this.form.controls.nombre.setValue(user.nombre);
+      this.form.controls.apellidoPaterno.setValue(user.apellidoPaterno);
+      this.form.controls.apellidoMaterno.setValue(user.apellidoMaterno);
+    })
+
 
     this.encuestasContestadas$ = this.cursoService.obtenerCursosPorUsuario();
   }
 
+
+
+
+
   guardar() {
+    this.displaySpinner = true;
     const val = this.form.value;
     let user: User = {} as User;
-    user.email = val.email;
+    user.email = this.email;
     user.nombre = val.nombre;
     user.apellidoPaterno = val.apellidoPaterno;
     user.apellidoMaterno = val.apellidoMaterno;
-
-
-    this.authService.updateUser(user).subscribe(
-      res => console.log(res)
-    );
+    this.authService.updateUser(user).subscribe((user)=>{
+        this.form.controls.nombre.setValue(user.nombre);
+        this.form.controls.apellidoPaterno.setValue(user.apellidoPaterno);
+        this.form.controls.apellidoMaterno.setValue(user.apellidoMaterno);
+        setTimeout(()=> this.displaySpinner =false , 2000)
+      });
   }
 
   onVerCertificado(cursoAbr: string) {

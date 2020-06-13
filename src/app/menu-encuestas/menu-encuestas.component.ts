@@ -23,7 +23,7 @@ export class MenuEncuestasComponent implements OnInit {
 
 
 
-  constructor(private activatedRoute: ActivatedRoute,
+  constructor(public activatedRoute: ActivatedRoute,
               private cursosService: CursosService,
               private authService: AuthService) {
   }
@@ -33,7 +33,6 @@ export class MenuEncuestasComponent implements OnInit {
     this.isLoggedIn$ = this.authService.isLoggedIn$;
     this.encuestasContestadas  = {} as EncuestaContestada;
     this.angularPAContestada('APA');
-    this.authService.user$.subscribe(user => console.log(user));
   }
 
 

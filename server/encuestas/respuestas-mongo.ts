@@ -30,8 +30,7 @@ export async function agregarRespuestasPorUsuario(user, respuestas, curso, respo
 
 export async function encuestaContestadaPorUsuario(user,cursoAbr){
   const docUserByEmail = await Usuario.findOne({email: user.email});
-  const encuesta = docUserByEmail.preguntasEncuesta.find(element => element.cursoAbr === cursoAbr)
-  return encuesta;
+  return docUserByEmail.preguntasEncuesta.find(element => element.cursoAbr === cursoAbr)
 }
 
 

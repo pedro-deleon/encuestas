@@ -19,7 +19,7 @@ import {CertificadoComponent} from './certificado/certificado.component';
 import {RecoveryComponent} from './recovery/recovery.component';
 import {AccountComponent} from './account/account.component';
 import {RekPasswordComponent} from "./support-elements/rek-password/rek-password.component";
-
+import { RekSpinnerComponent } from './support-elements/rek-spinner/rek-spinner.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +32,8 @@ import {RekPasswordComponent} from "./support-elements/rek-password/rek-password
     CertificadoComponent,
     RecoveryComponent,
     AccountComponent,
-    RekPasswordComponent
+    RekPasswordComponent,
+    RekSpinnerComponent,
   ],
   imports: [
     BrowserModule,

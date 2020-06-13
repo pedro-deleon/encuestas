@@ -8,6 +8,7 @@ import {CursosService} from "../services/cursos.service";
   styleUrls: ['./certificado.component.scss']
 })
 export class CertificadoComponent implements OnInit {
+  displaySpinner: boolean  = true;
   arrayBuffer;
 
 
@@ -16,8 +17,12 @@ export class CertificadoComponent implements OnInit {
 
   ngOnInit() {
     let cursoAbr = this.cursoService.getCursoAbrSeleccionado();
+
     this.certificadoService.obtenerCertificado(cursoAbr).subscribe(
-      (res) => this.arrayBuffer = res);
+      (res) => {
+        this.displaySpinner = false;
+        this.arrayBuffer = res
+      });
   }
 
 }

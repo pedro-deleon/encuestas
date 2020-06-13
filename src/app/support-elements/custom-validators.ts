@@ -1,4 +1,4 @@
-import {AbstractControl, FormGroup, ValidationErrors, ValidatorFn} from "@angular/forms";
+import {FormGroup, ValidationErrors, ValidatorFn} from "@angular/forms";
 
 
 export const passwordConfirmValidator: ValidatorFn = (control: FormGroup):

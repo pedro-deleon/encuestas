@@ -21,7 +21,7 @@ export class AngularPaComponent implements OnInit, OnDestroy {
 
   preguntas: string[];
 
-  faCircle = faCircleNotch;
+
 
   constructor(private certificadoService: CertificadoService,
               private cursosService: CursosService,
@@ -68,7 +68,7 @@ export class AngularPaComponent implements OnInit, OnDestroy {
         this.router.navigateByUrl('/encuestas/certificado')
       },
       (err) => {
-
+        console.log(err)
       });
   }
 

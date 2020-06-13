@@ -6,13 +6,13 @@ export async function obtenerCursosTerminadosPorUsuario(req: Request, res: Respo
   // Obtener un arreglo con objetos {nombreCurso, cursoAbrr}
 
   const sessionId = req.cookies['SESSIONID'];
-  const user = sessionStore.findUserBySessionId(sessionId);
+  const user = await sessionStore.findUserBySessionId(sessionId);
 
   if(!user){
     res.sendStatus(403);
   }else{
     const preguntasEncuestaPorUsuario = await Usuario.findOne({email: user.email}, 'preguntasEncuesta');
-    res.status(200).json(preguntasEncuestaPorUsuario.preguntasEncuesta);
+    await res.status(200).json(preguntasEncuestaPorUsuario.preguntasEncuesta);
   }
 
 

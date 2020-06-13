@@ -39,10 +39,7 @@ app.use(cookieParser());
 
 // Create link to Angular build directory
 const distDir = "./dist/";
-
-console.log(distDir);
 app.use(express.static(distDir));
-
 
 if(process.env.MONGODB_URI){
   mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
@@ -51,7 +48,7 @@ if(process.env.MONGODB_URI){
 }
 
 
-var db = mongoose.connection;
+const db = mongoose.connection;
 
 if (!db) {
     console.log("Error al conectar con MongoDB");
@@ -65,21 +62,18 @@ if (port == null || port == "") {
     port = 8080;
 }
 
-var allowCrossDomain = function (req, res, next) {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
+const allowCrossDomain = function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
 
-    // intercept OPTIONS method
-    if ('OPTIONS' == req.method) {
-        res.send(200);
-    } else {
-        next();
-    }
+  // intercept OPTIONS method
+  if ('OPTIONS' == req.method) {
+    res.send(200);
+  } else {
+    next();
+  }
 };
-
-
-
 
 
 // Launch app to listen to specified port

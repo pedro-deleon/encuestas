@@ -1,16 +1,10 @@
-<div *ngIf="displaySpinner" class="w-full h-full fixed block top-0 left-0 bg-white opacity-75 z-50">
-  <span class="text-green-500 opacity-75 top-1/2 my-0 mx-auto block relative w-0 h-0" style="
-    top: 50%;
-">
-    <fa-icon [icon]="faCircle" size="5x" [spin]="true"></fa-icon>
-  </span>
-</div>
+<rek-spinner *ngIf="displaySpinner" ></rek-spinner>
 
 <form autocomplete="off" novalidate  [formGroup]="form"  class="container mx-auto m-10 p-5 bg-oscuro rounded-lg"
       [class.rek-opacity]="isRekOpacity">
 
   <div class="flex flex-col mt-5">
-    <label for="" class="mt-3">Link de tu aplicación en Github Pages</label>
+    <label for="pagina" class="mt-3">Link de tu aplicación en Github Pages</label>
     <input class="bg-oscurito p-2 text-naranjete mt-3 rounded-lg" type="text" id="pagina" placeholder="Ingrese el link"
            name="pagina" formControlName="githubPage">
   </div>
@@ -23,18 +17,18 @@
   </div>
 
   <div class="flex flex-col mt-5">
-    <label for="" class="mt-3">{{preguntas[1]}}</label>
-    <input class="bg-oscurito p-2 text-naranjete mt-3 rounded-lg" type="text" formControlName="2">
+    <label for="2" class="mt-3">{{preguntas[1]}}</label>
+    <input id="2" class="bg-oscurito p-2 text-naranjete mt-3 rounded-lg" type="text" formControlName="2">
   </div>
 
   <div class="flex flex-col mt-5">
-    <label for="" class="mt-3">{{preguntas[2]}}</label>
-    <input class="bg-oscurito p-2 text-naranjete mt-3 rounded-lg" type="text" formControlName="3">
+    <label for="3" class="mt-3">{{preguntas[2]}}</label>
+    <input  id="3" class="bg-oscurito p-2 text-naranjete mt-3 rounded-lg" type="text" formControlName="3">
   </div>
 
   <div class="flex flex-col mt-5">
-    <label for="" class="mt-3">{{preguntas[3]}}</label>
-    <textarea class="bg-oscurito p-2 text-naranjete mt-3 rounded-lg" type="text" formControlName="4"></textarea>
+    <label for="4" class="mt-3">{{preguntas[3]}}</label>
+    <textarea id="4" class="bg-oscurito p-2 text-naranjete mt-3 rounded-lg" type="text" formControlName="4"></textarea>
   </div>
 
   <button class="btn btn-naranjete" (click)="onSubmit()">Listo!</button>

@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Observable, Subject} from "rxjs";
+import {Observable} from "rxjs";
 import {Curso} from "../model/Curso";
 import {PreguntaEncuesta} from "../model/Encuesta";
 
@@ -30,16 +30,8 @@ export class CursosService {
     return localStorage.getItem('cursoAbr');
   }
 
-  getCursoNombre(): string {
-    return localStorage.getItem('nombreCurso')
-  }
-
   setCursoAbr(cursoAbr: string) {
     localStorage.setItem('cursoAbr', cursoAbr);
-  }
-
-  setCursoNombre(cursoNombre: string) {
-    localStorage.setItem('cursoNombre', cursoNombre);
   }
 
   setCursoSeleccionado(curso: Curso) {
@@ -54,14 +46,12 @@ export class CursosService {
     return this.http.post<EncuestaContestada[]>('/api/cursos', {tortuga: 'tortuga'});
   }
 
-
-  agregarRespuestas(preguntasEncuesta: PreguntaEncuesta[], curso: Curso) {
-    return this.http.post('/api/encuesta', {preguntasEncuesta, curso});
-  }
-
   isEncuestaContestada(cursoAbr: string) {
     return this.http.post('/api/contestocurso', {cursoAbr: cursoAbr})
   }
 
 
 }
+
+
+// TODO Es confunso la manera en que agrego las respuestas de la encuesta en el usuario en el método de generar certificado

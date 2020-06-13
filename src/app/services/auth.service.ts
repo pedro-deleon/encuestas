@@ -2,9 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {BehaviorSubject, Observable} from "rxjs";
 import {User} from "../model/User";
-import {catchError, filter, map, share, shareReplay, tap} from "rxjs/operators";
-import {sessionStore} from "../../../server/user/session-store";
-import {userError} from "@angular/compiler-cli/src/transformers/util";
+import {filter, map, shareReplay, tap} from "rxjs/operators";
 import {Router, UrlTree} from "@angular/router";
 
 
@@ -54,7 +52,7 @@ export class AuthService {
   signup(user){
     return this.http.post<User>('/api/signup', user).pipe(
       shareReplay(),
-      tap(user=> {this.subject.next(user); console.log(user)})
+      tap(user=> {this.subject.next(user);})
     );
   }
 
