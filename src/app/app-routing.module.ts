@@ -52,7 +52,8 @@ const routes: Routes = [
   },
   {
     path: 'cuenta',
-    component: AccountComponent
+    component: AccountComponent,
+    canActivate: [AuthorizeGuard]
   },
   {
     path: '',
