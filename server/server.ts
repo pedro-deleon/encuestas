@@ -122,3 +122,6 @@ app.route('/api/contestocurso')
 
 app.route('/api/buckets')
   .get(obtenerBuckets);
+
+
+app.route('/')
