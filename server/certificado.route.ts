@@ -119,7 +119,7 @@ function crearCertificado(fechaEmision: string, participante: string, horas: str
                   blancoso: #ffffff
                 */
                 html {
-                  zoom: 0.753
+                  zoom: 0.50;
                 }
                 body,html{
                   position: relative;
