@@ -118,6 +118,9 @@ function crearCertificado(fechaEmision: string, participante: string, horas: str
                   oscuro : #343434
                   blancoso: #ffffff
                 */
+                html {
+                  zoom: 0.753
+                }
                 body,html{
                   position: relative;
                   margin: 0;
