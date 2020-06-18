@@ -51,7 +51,7 @@ async function createUserAndSession(res,user){
   await res.status(200).json({
     email: user.email,
     nombre: user.nombre,
-    apellidoPaterno: user.apellidoMaterno,
+    apellidoPaterno: user.apellidoPaterno,
     apellidoMaterno: user.apellidoMaterno
   });
 }

@@ -28,7 +28,10 @@ export class CertificadoService {
 
     this.authService.user$.subscribe(user => {
       this.currentUser = user;
+      console.log("generar certificado")
+      console.log(this.currentUser)
     })
+
 
     let participante = `${this.currentUser.nombre} ${this.currentUser.apellidoPaterno} ${this.currentUser.apellidoMaterno}`
 
