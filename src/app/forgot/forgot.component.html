@@ -1,0 +1,30 @@
+<mat-progress-bar mode="indeterminate" color="accent" *ngIf="displayLoadingBar"></mat-progress-bar>
+
+
+<div class="rek-container rek-container-oscuro
+  sm:min-w-full md:min-w-full xl:min-w-0 lg:min-w-0 min-w-full">
+
+
+  <h2 class="text-center text-lg font-extrabold">Recuperar Contraseña</h2>
+
+  <div @enterLeave *ngIf="displayAlertError" class="rek-container alert alert-red">El email que ingresaste no esta
+    registrado, Revisa que este correcto tu
+    email
+  </div>
+
+  <div @enterLeave *ngIf="displayAlertInfo" class="rek-container alert alert-green">Las instrucciones para reiniciar tu
+    password han sido enviadas con éxito
+    a tu correo electrónico, revisa la bandeja de entrada o la carpeta de correos no deseados.
+  </div>
+
+  <div class="form-group">
+    <label for="email">Ingresa tu Email</label>
+    <input class="form-input" type="text" id="email" [formControl]="email"
+           placeholder="Ingrese su email"
+    >
+  </div>
+
+  <button class="btn btn-naranjete" (click)="onSubmit()">
+    Enviar Correo
+  </button>
+</div>

@@ -3,6 +3,9 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../services/auth.service";
 import {Router} from "@angular/router";
 import {passwordConfirmValidator} from "../support-elements/custom-validators";
+// @ts-ignore
+import {ERRORS_VALIDATE_PASSWORD} from "../support-elements/errors";
+
 
 @Component({
   selector: 'app-signup',
@@ -12,13 +15,8 @@ import {passwordConfirmValidator} from "../support-elements/custom-validators";
 export class SignupComponent implements OnInit {
   form: FormGroup
   errors: string[] = [];
+  messagePerErrorCode = ERRORS_VALIDATE_PASSWORD;
 
-  messagePerErrorCode = {
-    min : 'La longitud mínima es de 10 caracteres',
-    uppercase: 'Debe tener al menos una mayuscula',
-    digits: 'Debe tener al menos un dígito',
-    lowercase: 'Debe tener al menos una letra minúscula'
-  }
 
   constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
 
@@ -63,7 +61,6 @@ export class SignupComponent implements OnInit {
       })
         .subscribe(
           () => {
-            console.log("Usuario creado correctamente");
             this.router.navigateByUrl('/encuestas')
           },
           response => this.errors = response.error.errors

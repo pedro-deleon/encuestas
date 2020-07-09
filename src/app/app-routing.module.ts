@@ -6,9 +6,10 @@ import {AngularPaComponent} from './menu-encuestas/encuestas/angular-pa/angular-
 import {SignupComponent} from "./signup/signup.component";
 import {AuthorizeGuard} from "./services/authorize.guard";
 import {CertificadoComponent} from "./certificado/certificado.component";
-import {RecoveryComponent} from "./recovery/recovery.component";
+import {ForgotComponent} from "./forgot/forgot.component";
 import {OnlyDisplayIfLoggedOutGuard} from "./services/only-display-if-logged-out.guard";
 import {AccountComponent} from "./account/account.component";
+import {ResetComponent} from "./reset/reset.component";
 
 const routes: Routes = [
   {
@@ -46,8 +47,13 @@ const routes: Routes = [
     canActivate: [OnlyDisplayIfLoggedOutGuard]
   },
   {
-    path: 'recovery',
-    component: RecoveryComponent,
+    path: 'forgot',
+    component: ForgotComponent,
+    canActivate: [OnlyDisplayIfLoggedOutGuard]
+  },
+  {
+    path: 'reset/:token',
+    component: ResetComponent,
     canActivate: [OnlyDisplayIfLoggedOutGuard]
   },
   {

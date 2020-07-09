@@ -9,7 +9,8 @@ module.exports = {
       oscurito: '#373737',
       oscuro: '#1b1b1b',
       clarito: '#e5e5e5',
-      alert: '#a84e32'
+      red: '#a84e32',
+      green: '#268e41'
 
     },
     extend: {},

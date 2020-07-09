@@ -14,7 +14,7 @@ import {Router} from "@angular/router";
 export class AccountComponent implements OnInit {
   form: FormGroup;
   encuestasContestadas$: Observable<EncuestaContestada[]>;
-  displaySpinner: boolean  = false;
+  displayLoadingBar: boolean  = false;
   email: string;
 
   constructor(private authService: AuthService, private cursoService: CursosService, private router: Router) {
@@ -44,7 +44,7 @@ export class AccountComponent implements OnInit {
 
 
   guardar() {
-    this.displaySpinner = true;
+    this.displayLoadingBar = true;
     const val = this.form.value;
     let user: User = {} as User;
     user.email = this.email;
@@ -55,7 +55,7 @@ export class AccountComponent implements OnInit {
         this.form.controls.nombre.setValue(user.nombre);
         this.form.controls.apellidoPaterno.setValue(user.apellidoPaterno);
         this.form.controls.apellidoMaterno.setValue(user.apellidoMaterno);
-        setTimeout(()=> this.displaySpinner =false , 2000)
+        setTimeout(()=> this.displayLoadingBar =false , 2000)
       });
   }
 

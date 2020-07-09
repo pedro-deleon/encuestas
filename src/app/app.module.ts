@@ -1,8 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {PdfViewerModule} from "ng2-pdf-viewer";
-
-
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {LoginComponent} from './login/login.component';
@@ -16,10 +14,15 @@ import {SignupComponent} from './signup/signup.component';
 import {HeaderComponent} from './header/header.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {CertificadoComponent} from './certificado/certificado.component';
-import {RecoveryComponent} from './recovery/recovery.component';
+import {ForgotComponent} from './forgot/forgot.component';
 import {AccountComponent} from './account/account.component';
 import {RekPasswordComponent} from "./support-elements/rek-password/rek-password.component";
 import { RekSpinnerComponent } from './support-elements/rek-spinner/rek-spinner.component';
+import { ResetComponent } from './reset/reset.component';
+
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,10 +33,11 @@ import { RekSpinnerComponent } from './support-elements/rek-spinner/rek-spinner.
     SignupComponent,
     HeaderComponent,
     CertificadoComponent,
-    RecoveryComponent,
+    ForgotComponent,
     AccountComponent,
     RekPasswordComponent,
     RekSpinnerComponent,
+    ResetComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,7 +47,8 @@ import { RekSpinnerComponent } from './support-elements/rek-spinner/rek-spinner.
     FontAwesomeModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    PdfViewerModule
+    PdfViewerModule,
+    MatProgressBarModule
 
   ],
   providers: [],

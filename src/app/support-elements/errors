@@ -1,0 +1,8 @@
+export const ERRORS_VALIDATE_PASSWORD = {
+  min : 'La longitud mínima es de 10 caracteres',
+  uppercase: 'Debe tener al menos una mayuscula',
+  digits: 'Debe tener al menos un dígito',
+  lowercase: 'Debe tener al menos una letra minúscula',
+  same: 'Los dos campos de las contraseñas deben coincidir',
+  token: 'Hay un problema en la dirección URL para reiniciar contraseña o la dirección ha expirado'
+}

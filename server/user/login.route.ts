@@ -25,6 +25,7 @@ async function loginAndBuildResponse(credentials: any, user, res: Response){
     console.log(`Usuario ${user.email} logeado con éxito`);
     res.cookie("SESSIONID", sessionId, {httpOnly: true, secure: true});
     await res.status(200).json({
+      _id: user._id,
       email: user.email,
       nombre: user.nombre,
       apellidoPaterno: user.apellidoPaterno,

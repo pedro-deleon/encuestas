@@ -1,27 +1,38 @@
-/* You can add global styles to this file, and also import other style files */
-
 @tailwind base;
 @tailwind components;
 
 
-.btn{
+
+.rek-container {
+  @apply mx-auto  w-2/4 mt-2  border-2  p-4 flex  flex-col;
+}
+
+.rek-container-oscuro{
+  @apply bg-oscuro bg-opacity-75 border-oscuro;
+}
+
+.btn {
   @apply p-2 mt-5  rounded-md;
 }
 
+.rek-center {
+  @apply mx-auto w-2/4 mt-2 bg-oscuro  border-oscuro border-2  m-2 p-8;
+}
 
-.btn-naranjete{
+
+.btn-naranjete {
   @apply bg-naranjete text-oscurito;
 }
 
-.btn-auth{
+.btn-auth {
   @apply border-t-2 border-r-2 border-l-2 rounded-none border-oscuro bg-oscuro;
 }
 
-.btn:hover:enabled{
+.btn:hover:enabled {
   @apply bg-opacity-75;
 }
 
-.btn:hover:disabled{
+.btn:hover:disabled {
   @apply cursor-default;
 }
 
@@ -30,20 +41,26 @@
 form
  */
 
-.form-group{
+.form-group {
   @apply mt-3 mb-3;
 }
 
-.form-input{
+.form-input {
   @apply bg-oscurito p-2 text-naranjete  rounded-lg w-full border border-oscuro;
 }
 
 
-.alert{
-  @apply bg-alert p-2 rounded-lg;
+.alert {
+  @apply p-2 rounded-lg;
 }
 
+.alert-red {
+  @apply bg-red border-red w-full;
+}
 
+.alert-green {
+  @apply bg-green border-green w-full;
+}
 
 
 @tailwind utilities;

@@ -28,8 +28,6 @@ export class CertificadoService {
 
     this.authService.user$.subscribe(user => {
       this.currentUser = user;
-      console.log("generar certificado")
-      console.log(this.currentUser)
     })
 
 
@@ -44,17 +42,19 @@ export class CertificadoService {
         curso: curso,
         horasCurso: curso.horas,
         instructorCurso: curso.instructor,
-        preguntasEncuesta
+        preguntasEncuesta,
+        user: this.currentUser
       });
   }
 
 
   obtenerCertificado(cursoAbr: string) {
+
     this.authService.user$.subscribe(user => {
       this.currentUser = user;
     })
     let nombre: string = `${this.currentUser.nombre} ${this.currentUser.apellidoPaterno} ${this.currentUser.apellidoMaterno}`
-    return this.http.post('/api/obtenerCertificado', {nombre, cursoAbr}, {responseType: "arraybuffer"});
+    return this.http.post('/api/obtenerCertificado', {nombre, cursoAbr,user:this.currentUser}, {responseType: "arraybuffer"});
   }
 
 }

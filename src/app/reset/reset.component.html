@@ -1,0 +1,30 @@
+<div class="rek-container rek-container-oscuro sm:min-w-full md:min-w-full xl:min-w-0 lg:min-w-0 min-w-full">
+  <h2 class="text-center text-lg font-extrabold">Asignar una nueva contraseña</h2>
+
+  <div *ngIf="errors?.length > 0"
+       class="alert alert-red text-xs sm:min-w-full md:min-w-full xl:min-w-0 lg:min-w-0 min-w-full">
+    <div *ngFor="let error of errors">
+      {{errorsPassword[error]}}
+    </div>
+  </div>
+
+  <div @enterLeave *ngIf="displayAlertInfo"
+       class="rek-container alert alert-green">
+    La contraseña ha sido cambiada con éxito.
+  </div>
+
+
+  <div class="form-group">
+    <label for="password">Nueva Contraseña</label>
+    <rek-password id="password" [formControl]="password"></rek-password>
+  </div>
+
+  <div class="form-group">
+    <label for="passwordconfirm">Confirma tu nueva Contraseña</label>
+    <rek-password id="passwordconfirm" [formControl]="passwordConfirm"></rek-password>
+  </div>
+
+  <button class="btn btn-naranjete" (click)="reset()">
+    Confirmar
+  </button>
+</div>

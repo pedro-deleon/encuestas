@@ -4,9 +4,11 @@ import {BehaviorSubject, Observable} from "rxjs";
 import {User} from "../model/User";
 import {filter, map, shareReplay, tap} from "rxjs/operators";
 import {Router, UrlTree} from "@angular/router";
+import {IRequestResetPassword} from "../reset/reset.component";
 
 
 export const ANONYNOUS_USER : User= {
+  _id: undefined,
   email: undefined,
   nombre: '',
   apellidoPaterno: '',
@@ -46,7 +48,7 @@ export class AuthService {
 
   constructor(private http: HttpClient, private router: Router) {
     http.get('/api/user')
-      .subscribe((user: User) => this.subject.next( user  ? user : ANONYNOUS_USER))
+      .subscribe((user: User) => {this.subject.next( user  ? user : ANONYNOUS_USER)})
   }
 
   signup(user){
@@ -79,5 +81,16 @@ export class AuthService {
 
   updateUser(user: User) : Observable<any>{
     return this.http.post('/api/user', {user: user});
+  }
+
+
+  forgot(email: string): Observable<any>{
+    return this.http.post('/api/forgot', {
+      email: email
+    });
+  }
+
+  reset(iRequestResetPasswod: IRequestResetPassword):Observable<any>{
+    return this.http.post('/api/reset',iRequestResetPasswod);
   }
 }

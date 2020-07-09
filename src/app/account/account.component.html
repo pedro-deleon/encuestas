@@ -1,4 +1,4 @@
-<rek-spinner *ngIf="displaySpinner"  ></rek-spinner>
+<mat-progress-bar mode="indeterminate" color="accent" *ngIf="displayLoadingBar"></mat-progress-bar>
 
 <div class="mx-auto  flex  flex-col  m-2 p-8  w-2/4
   sm:min-w-full md:min-w-full xl:min-w-0 lg:min-w-0 min-w-full">
@@ -6,7 +6,7 @@
   <h2 class="text-center text-lg font-extrabold">Cuenta</h2>
 
 
-  <form autocomplete="off" novalidate [formGroup]="form" [class.rek-opacity]="displaySpinner">
+  <form autocomplete="off" novalidate [formGroup]="form" [class.rek-opacity]="displayLoadingBar">
     <div class="form-group">
       <label for="nombre">Nombre</label>
       <input class="form-input" type="text" id="nombre" formControlName="nombre"

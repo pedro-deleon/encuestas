@@ -37,12 +37,9 @@ async function createUserAndSession(res,user){
 
   const usuarioSave = await usuarioModel.save();
 
-  console.log(usuarioSave)
-
 
   const sessionId = await randomBytes(32).then(bytes=>bytes.toString('hex'))
 
-  console.log(sessionId)
 
   sessionStore.createSession(sessionId,user);
 

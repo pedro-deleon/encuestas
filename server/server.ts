@@ -8,6 +8,9 @@ import {login} from "./user/login.route";
 import {actualizarUsuario} from "./user/actualizar.route";
 import {obtenerCursosTerminadosPorUsuario} from "./cursos/cursos-terminados.route";
 import {obtenerBuckets} from "./buckets.route";
+import {forgot} from "./user/forgot.route";
+import {testmail} from "./testmail.route";
+import {reset} from "./user/reset.route";
 let express = require('express');
 
 const app: Application = express();
@@ -124,4 +127,9 @@ app.route('/api/buckets')
   .get(obtenerBuckets);
 
 
-app.route('/')
+app.route('/api/forgot')
+  .post(forgot)
+
+app.route('/api/reset')
+  .post(reset)
+

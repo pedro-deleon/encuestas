@@ -44,7 +44,7 @@ export async function generarCertificado(request: Request, response: Response) {
       const path = require ('path')
 
      // uploadParams.Key = path.basename(`/certificados/${request.body.participante}`)
-      uploadParams.Key = `certificados/${request.body.participante}/${request.body.curso.nombre_corto}.pdf`;
+      uploadParams.Key = `certificados/${request.body.user._id}/${request.body.curso.nombre_corto}.pdf`;
       agregarRespuestasPorUsuario(user, request.body.preguntasEncuesta, request.body.curso, response).then(
         (value)=> {
           if(value === 1){
@@ -80,17 +80,16 @@ export function obtenerCertificadoPorUsuarioAndCurso(req: Request, res: Response
 
   const sessionId = req.cookies['SESSIONID'];
 
+
   const nombre = req.body.nombre;
   const cursoAbr = req.body.cursoAbr;
-
-
   if (!sessionStore.isSessionValid(sessionId)) {
     res.sendStatus(403);
   }else{
 
     let getParams = {
       Bucket : 'encuestas-cdis',
-      Key: `certificados/${nombre}/${cursoAbr}.pdf`
+      Key: `certificados/${req.body.user._id}/${cursoAbr}.pdf`
     }
 
     s3.getObject(getParams, function(err, data){

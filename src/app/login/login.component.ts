@@ -2,30 +2,13 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../services/auth.service";
 import {Router} from "@angular/router";
+import {anEnterLeave} from "../support-elements/animations";
 
-
-import{
-  trigger,
-  style,
-  animate,
-  transition
-} from "@angular/animations";
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  animations: [
-    trigger('enterLeave',[
-      transition(':enter',[
-        style({opacity:0}),
-        animate('500ms', style({opacity: 1}))
-      ]),
-      transition(':leave',[
-        style({opacity: 1}),
-        animate('500ms', style({opacity: 0}))
-      ])
-    ])
-  ]
+  animations: anEnterLeave
 })
 export class LoginComponent implements OnInit {
   errorResponse: string;

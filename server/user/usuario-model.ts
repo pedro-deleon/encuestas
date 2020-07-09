@@ -8,6 +8,8 @@ let usuarioSchema =  new mongoose.Schema({
   apellidoPaterno: String,
   apellidoMaterno: String,
   passwordDigest: {type: String, alias: 'password'},
+  resetPasswordToken: String,
+  resetPasswordExpires: String,
   preguntasEncuesta: []
 })
 

@@ -1,0 +1,82 @@
+@import '../node_modules/@angular/material/_theming.scss';
+@include mat-core();
+
+$rek-oscuro: (
+  50 : #e4e4e4,
+  100 : #bbbbbb,
+  200 : #8d8d8d,
+  300 : #5f5f5f,
+  400 : #3d3d3d,
+  500 : #1b1b1b,
+  600 : #181818,
+  700 : #141414,
+  800 : #101010,
+  900 : #080808,
+  A100 : #ff5050,
+  A200 : #ff1d1d,
+  A400 : #e90000,
+  A700 : #cf0000,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #ffffff,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #ffffff,
+    A400 : #ffffff,
+    A700 : #ffffff,
+  )
+);
+
+
+
+
+/* For use in src/lib/core/theming/_palette.scss */
+$rek-naranjete: (
+  50 : #fff2e0,
+  100 : #ffdfb3,
+  200 : #ffca80,
+  300 : #ffb54d,
+  400 : #ffa526,
+  500 : #ff9500,
+  600 : #ff8d00,
+  700 : #ff8200,
+  800 : #ff7800,
+  900 : #ff6700,
+  A100 : #ffffff,
+  A200 : #fff7f2,
+  A400 : #ffd5bf,
+  A700 : #ffc4a6,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #000000,
+    500 : #000000,
+    600 : #000000,
+    700 : #000000,
+    800 : #000000,
+    900 : #000000,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  )
+);
+
+
+
+$my-primary: mat-palette($rek-oscuro,500);
+$my-accent: mat-palette($rek-naranjete,500);
+
+$my-theme: mat-light-theme($my-primary,$my-accent);
+
+@include angular-material-theme($my-theme);
+
