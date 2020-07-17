@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {CertificadoService} from "../services/certificado.service";
 import {CursosService} from "../services/cursos.service";
+import {createAndDownloadBlobFile} from "../support-elements/functions";
+import {faDownload} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'app-certificado',
@@ -10,6 +12,7 @@ import {CursosService} from "../services/cursos.service";
 export class CertificadoComponent implements OnInit {
   displaySpinner: boolean  = true;
   arrayBuffer;
+  faDownload = faDownload;
 
 
   constructor(private certificadoService: CertificadoService, private cursoService: CursosService) {
@@ -23,6 +26,11 @@ export class CertificadoComponent implements OnInit {
         this.displaySpinner = false;
         this.arrayBuffer = res
       });
+  }
+
+
+  download(){
+    createAndDownloadBlobFile(this.arrayBuffer, 'certificado');
   }
 
 }

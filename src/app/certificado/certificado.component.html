@@ -2,8 +2,19 @@
   <h2>Haz completado con éxito la capacitación: </h2>
 </div>
 <rek-spinner *ngIf="displaySpinner"></rek-spinner>
-<pdf-viewer [src]="arrayBuffer"
-            [render-text]="true"
->
-</pdf-viewer>
+
+
+<div class="rek-container-pdf">
+  <div id="buttons" class="flex justify-end mr-40">
+    <button  (click)="download()">
+      <fa-icon [icon]="faDownload"></fa-icon>
+    </button>
+  </div>
+
+  <pdf-viewer [src]="arrayBuffer"
+              [render-text]="true"
+  >
+  </pdf-viewer>
+</div>
+
 

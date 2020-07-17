@@ -25,7 +25,6 @@ export class CertificadoService {
     moment.locale('es');
     fechaMoment.locale(false);
     let fechaEmision: string = fechaMoment.format('DD MMMM YYYY');
-
     this.authService.user$.subscribe(user => {
       this.currentUser = user;
     })

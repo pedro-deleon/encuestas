@@ -4,7 +4,11 @@
 
 
 .rek-container {
-  @apply mx-auto  w-2/4 mt-2  border-2  p-4 flex  flex-col;
+  @apply mx-auto  w-2/4 mt-2  border-2  p-4 flex  flex-col border-oscuro;
+}
+
+.rek-container-pdf{
+  @apply mx-auto  mt-2  border-2  p-4 flex  flex-col border-0;
 }
 
 .rek-container-oscuro{
@@ -14,11 +18,6 @@
 .btn {
   @apply p-2 mt-5  rounded-md;
 }
-
-.rek-center {
-  @apply mx-auto w-2/4 mt-2 bg-oscuro  border-oscuro border-2  m-2 p-8;
-}
-
 
 .btn-naranjete {
   @apply bg-naranjete text-oscurito;

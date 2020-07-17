@@ -6,3 +6,6 @@ export const ERRORS_VALIDATE_PASSWORD = {
   same: 'Los dos campos de las contraseñas deben coincidir',
   token: 'Hay un problema en la dirección URL para reiniciar contraseña o la dirección ha expirado'
 }
+
+
+
