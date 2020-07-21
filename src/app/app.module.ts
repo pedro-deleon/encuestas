@@ -21,6 +21,7 @@ import { RekSpinnerComponent } from './support-elements/rek-spinner/rek-spinner.
 import { ResetComponent } from './reset/reset.component';
 
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { RekFooterComponent } from './rek-footer/rek-footer.component';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     RekPasswordComponent,
     RekSpinnerComponent,
     ResetComponent,
+    RekFooterComponent,
   ],
   imports: [
     BrowserModule,
