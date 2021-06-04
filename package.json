@@ -44,7 +44,7 @@
     "core-js": "^2.4.1",
     "email-validator": "^2.0.4",
     "express": "^4.17.1",
-    "html-pdf": "^2.2.0",
+    "html-pdf": "^3.0.1",
     "moment": "^2.24.0",
     "mongoose": "^5.9.10",
     "ng2-pdf-viewer": "^6.3.0",
